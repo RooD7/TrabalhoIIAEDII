@@ -1,3 +1,7 @@
+/*  Nome:       Rodrigo Sousa Alves
+    Matricula:  0011264
+    Data:       27/10/2016
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "pilha.h"
@@ -28,9 +32,8 @@ int Pvazia(stackNodePtr pilha) {
 
 void Pdestroi(stackNodePtr pilha) {
     
-    if(Pvazia(pilha) == 1)
-        exit(1);
-    else {
+    /* Pilha nao vazia     */
+    if(Pvazia(pilha) == 0) {
         stackNode *tempPtr = NULL;
         while(pilha->topPtr  != NULL) {
             tempPtr = pilha->topPtr ;
