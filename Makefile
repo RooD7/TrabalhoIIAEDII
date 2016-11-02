@@ -3,6 +3,8 @@
 #	Data:		27/10/2016
 
 all:
-	gcc -o main -c main.c
+	gcc -o pilha.o -c pilha.c
+	gcc -o arvore.o -c arvore.c
+	gcc main.c pilha.o arvore.o -o main
 run:
 	./main
