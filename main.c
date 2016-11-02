@@ -5,34 +5,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pilha.h"
-#include "arvore.h"
+#include "entrada.h"
 
 int main(int argc, char const *argv[]) {
 	
-	stackNodePtr pilha;
-    int aux;
+	Pilha p;
+    p = Pcria();
 
-    pilha = Pcria();
-    Pinsere(pilha, 6);
-    aux = Pexamina(pilha);
-    aux = Ptamanho(pilha);
-    aux = Premove(pilha);
-    Pdestroi(pilha);
+	int op;
+	printf("Entrada de dados:\n");
+	printf("1. Via Tela.\n");
+	printf("2. Via Arquivo.\n");
+	scanf("%d", &op);
+	EntradaDeDados(p, op);
 
-    /* sub-árvore 'd' */
-	NohArv a1= Acria('d',AcriaVazia(),AcriaVazia());
-	/* sub-árvore 'b' */
-	NohArv a2= Acria('b',AcriaVazia(),a1);
-	/* sub-árvore 'e' */
-	NohArv a3= Acria('e',AcriaVazia(),AcriaVazia());
-	/* sub-árvore 'f' */
-	NohArv a4= Acria('f',AcriaVazia(),AcriaVazia());
-	/* sub-árvore 'c' */
-	NohArv a5= Acria('c',a3,a4);
-	/* árvore 'a' */
-	NohArv a = Acria('a',a2,a5 );
+    Pdestroi(p);
+	/*	a = Alibera(a); */
 
-	a = Alibera(a);
-	
 	return 0;
 }

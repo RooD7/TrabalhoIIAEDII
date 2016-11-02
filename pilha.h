@@ -2,33 +2,30 @@
 	Matricula:	0011264
 	Data:		27/10/2016
 */
-
+#include "arvore.h"
 /* Cabeçalhos das funções implementadas no módulo pilha.c */
 
 typedef struct node stackNode;
 
-typedef struct topo* stackNodePtr;
+typedef struct topo* Pilha;
 
 /* Cria uma pilha vazia */
-stackNodePtr Pcria();
+Pilha Pcria();
 
 /* examina se a pilha esta vazia */
-int Pvazia(stackNodePtr pilha);
+int Pvazia(Pilha pilha);
 
 /* destroi a pilha */
-void Pdestroi(stackNodePtr pilha);
-
-/* examina se a pilha esta cheia */
-int Pcheia(stackNodePtr pilha);
+void Pdestroi(Pilha pilha);
 
 /* retorna a quantidade de elementos na pilha */
-int Ptamanho(stackNodePtr pilha);
+int Ptamanho(Pilha pilha);
 
 /* retorna o elemento no topo da pilha */
-int Pexamina(stackNodePtr pilha);
+NohArv Pexamina(Pilha pilha);
 
 /* insere o elemento no topo da pilha */
-void Pinsere(stackNodePtr pilha, int valor);
+void Pinsere(Pilha pilha, NohArv valor);
 
 /* remove e retorna o elemento no topo da pilha */
-int Premove(stackNodePtr pilha);
+int Premove(Pilha pilha);

@@ -7,7 +7,7 @@
 #include "pilha.h"
 
 struct node {
-    int item;
+    NohArv item;
     struct node *proxPtr;
 };
 
@@ -16,21 +16,21 @@ struct topo {
     int cont;
 };
 
-stackNodePtr Pcria(){
-    stackNodePtr pilha = (stackNodePtr)malloc(sizeof(stackNodePtr));
+Pilha Pcria(){
+    Pilha pilha = (Pilha)malloc(sizeof(Pilha));
     pilha->topPtr  = NULL;
     pilha->cont = 0;
     return pilha;
 }
 
-int Pvazia(stackNodePtr pilha) {
+int Pvazia(Pilha pilha) {
     if (pilha->topPtr  == NULL)
         return 1;
     else
         return 0;
 }
 
-void Pdestroi(stackNodePtr pilha) {
+void Pdestroi(Pilha pilha) {
     
     /* Pilha nao vazia     */
     if(Pvazia(pilha) == 0) {
@@ -43,22 +43,18 @@ void Pdestroi(stackNodePtr pilha) {
     }
 }
 
-int Pcheia(stackNodePtr pilha) {
-    return 0;
-}
-
-int Ptamanho(stackNodePtr pilha) {
+int Ptamanho(Pilha pilha) {
     return (pilha->cont);
 }
 
-int Pexamina(stackNodePtr pilha) {
+NohArv Pexamina(Pilha pilha) {
     if(Pvazia(pilha) == 1)
-        return 0;
+        return NULL;
     else
         return(pilha->topPtr->item);
 }
 
-void Pinsere(stackNodePtr pilha, int valor) {
+void Pinsere(Pilha pilha, NohArv valor) {
     stackNode *newNode = (stackNode*)malloc(sizeof(stackNode));
     
     if(newNode == NULL)   /* Caso o SO nao forneca memoria */
@@ -72,7 +68,7 @@ void Pinsere(stackNodePtr pilha, int valor) {
     }
 }
 
-int Premove(stackNodePtr pilha) {
+int Premove(Pilha pilha) {
     
     stackNode *tempPtr;
     if(Pvazia(pilha) == 1)

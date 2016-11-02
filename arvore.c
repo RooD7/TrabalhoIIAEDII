@@ -20,7 +20,7 @@ NohArv AcriaVazia(void) {
 /* Cria um noh */
 NohArv Acria(char c, NohArv esq, NohArv dir) {
 	NohArv arv = (NohArv)malloc(sizeof(NohArv*));
-	/*	arv->info = c;*/
+	arv->info = c;
 	arv->esq = esq;
 	arv->dir = dir;
 	return arv;
@@ -51,11 +51,46 @@ int Apertence(NohArv arv, char c) {
 			Apertence(arv->dir, c);
 }
 
-/* Imprime arvore */
-void Aimprime(NohArv arv) {
+/*	Item do Noh	*/
+char AitemNoh(NohArv arv) {
+	return arv->info;
+}
+
+/* Imprime arvore Posfixada */
+void AimprimePos(NohArv arv) {
+	if (!Avazia(arv)) {
+		AimprimePos(arv->esq);
+		AimprimePos(arv->dir);
+		printf("%c ", arv->info);
+	}
+}
+
+/* Imprime arvore Prefixada */
+void AimprimePre(NohArv arv) {
 	if (!Avazia(arv)) {
 		printf("%c ", arv->info);
-		Aimprime(arv->esq);
-		Aimprime(arv->dir);
+		AimprimePre(arv->esq);
+		AimprimePre(arv->dir);
 	}
+}
+
+/* Imprime arvore Infixa */
+void AimprimeInf(NohArv arv) {
+	if (!Avazia(arv)) {
+		AimprimeInf(arv->esq);
+		printf("%c ", arv->info);
+		AimprimeInf(arv->dir);
+	}
+}
+
+char AitemArv(NohArv arv) {
+	return(arv->info);
+}
+
+NohArv AnohEsq(NohArv arv) {
+	return(arv->esq);
+}
+
+NohArv AnohDir(NohArv arv) {
+	return(arv->dir);
 }
