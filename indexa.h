@@ -5,7 +5,6 @@
 
 #include "pilha.h"
 
-
 int IehOperador(char c);
 int IehOperando(char c);
 void IindexaChar(Pilha p, char c);
