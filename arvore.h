@@ -22,6 +22,7 @@ int Avazia(NohArv arv);
 /* Pertence a arvore */
 int Apertence(NohArv arv, char c);
 
+<<<<<<< HEAD
 /*	Item do Noh	*/
 char AitemNoh(NohArv arv);
 
@@ -42,3 +43,7 @@ NohArv AnohEsq(NohArv arv);
 
 /*	Noh direito	*/
 NohArv AnohDir(NohArv arv);
+=======
+/* Imprime arvore */
+void Aimprime(NohArv arv);
+>>>>>>> master
