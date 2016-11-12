@@ -27,12 +27,13 @@ void IindexaChar(Pilha p, char c) {
 			Premove(p);
 			NohArv a2 = Pexamina(p);
 			Premove(p);
-			aux = AitemNoh(a2);
 			/* segundo item é operador, fica a esquerda do novo noh*/
-			if  (IehOperador(aux))
+			aux = AitemNoh(a2);
+			if (IehOperador(aux))
 				arv = Acria(c, a2, a1);
 			else
-				arv = Acria(c, a1, a2);	
+				arv = Acria(c, a1, a2);
+
 		} 
 		else 
 			arv = Acria(c, AcriaVazia(), AcriaVazia());
