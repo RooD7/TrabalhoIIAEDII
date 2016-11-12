@@ -42,3 +42,7 @@ NohArv AnohEsq(NohArv arv);
 
 /*	Noh direito	*/
 NohArv AnohDir(NohArv arv);
+
+/* Imprime arvore */
+void Aimprime(NohArv arv);
+
