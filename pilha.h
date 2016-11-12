@@ -2,6 +2,7 @@
 	Matricula:	0011264
 	Data:		27/10/2016
 */
+
 #include "arvore.h"
 /* Cabeçalhos das funções implementadas no módulo pilha.c */
 
