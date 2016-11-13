@@ -27,13 +27,13 @@ int Apertence(NohArv arv, char c);
 char AitemNoh(NohArv arv);
 
 /* Imprime arvore Posfixada */
-void AimprimePos(NohArv arv);
+void AimprimePos(NohArv arv, FILE* fileOut);
 
 /* Imprime arvore Prefixada */
-void AimprimePre(NohArv arv);
+void AimprimePre(NohArv arv, FILE* fileOut);
 
 /* Imprime arvore Infixa */
-void AimprimeInf(NohArv arv);
+void AimprimeInf(NohArv arv, FILE* fileOut);
 
 /*	Retorna elemento arvore	*/
 char AitemArv(NohArv arv);

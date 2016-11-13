@@ -58,29 +58,29 @@ char AitemNoh(NohArv arv) {
 }
 
 /* Imprime arvore Posfixada */
-void AimprimePos(NohArv arv) {
+void AimprimePos(NohArv arv, FILE* fileOut) {
 	if (!Avazia(arv)) {
-		AimprimePos(arv->esq);
-		AimprimePos(arv->dir);
-		printf("%c ", arv->info);
+		AimprimePos(arv->esq, fileOut);
+		AimprimePos(arv->dir, fileOut);
+		fprintf(fileOut,"%c ", arv->info);
 	}
 }
 
 /* Imprime arvore Prefixada */
-void AimprimePre(NohArv arv) {
+void AimprimePre(NohArv arv, FILE* fileOut) {
 	if (!Avazia(arv)) {
-		printf("%c ", arv->info);
-		AimprimePre(arv->esq);
-		AimprimePre(arv->dir);
+		fprintf(fileOut,"%c ", arv->info);
+		AimprimePre(arv->esq, fileOut);
+		AimprimePre(arv->dir, fileOut);
 	}
 }
 
 /* Imprime arvore Infixa */
-void AimprimeInf(NohArv arv) {
+void AimprimeInf(NohArv arv, FILE* fileOut) {
 	if (!Avazia(arv)) {
-		AimprimeInf(arv->esq);
-		printf("%c ", arv->info);
-		AimprimeInf(arv->dir);
+		AimprimeInf(arv->esq, fileOut);
+		fprintf(fileOut,"%c ", arv->info);
+		AimprimeInf(arv->dir, fileOut);
 	}
 }
 
