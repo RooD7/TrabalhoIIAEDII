@@ -11,114 +11,135 @@
 
 /*	Tipo de Entrada de Dados	*/
 void ESentradaDeDados(Pilha p) {
-	int op;
+	int opIn, opOut;
+	FILE* fileIn;
+	FILE* fileOut;
 
+	/*	Entrada de Dados	*/
 	printf("Entrada de dados:\n");
 	printf("1. Via Tela.\n");
 	printf("2. Via Arquivo.\n");
-	scanf("%d", &op);
+	scanf("%d", &opIn);
 
-	if (op == 1)
-		ESleituraTela(p);
+	if(opIn == 2) {
+		char nameFileIn[50];
+		printf("Nome do Arquivo Entrada: ");
+		scanf("%s", nameFileIn);
+		fileIn = fopen(nameFileIn, "r");
+		if(fileIn == NULL)
+			exit(1);
+	}
 	else
-		ESleituraArquivo(p);
+		fileIn = stdout;
+
+	/*	Saida de Dados	*/
+	printf("\nSaida de dados:\n");
+	printf("1. Via Tela.\n");
+	printf("2. Via Arquivo.\n");
+	scanf("%d", &opOut);
+
+	if(opOut == 2) {
+		char nameFileOut[50];
+		printf("Nome do Arquivo Saida: ");
+		scanf("%s", nameFileOut);
+		fileOut = fopen(nameFileOut, "w");
+		if(fileOut == NULL)
+			exit(1);
+	}
+	else
+		fileOut = stdout;
+
+	/*	Funções de leitura de dados	*/
+	if (opIn == 1)
+		ESleituraTela(p, fileOut);
+	else
+		ESleituraArquivo(p, fileIn, fileOut);
+
+	fclose(fileIn);
+	fclose(fileOut);
 }
 
-void ESleituraTela(Pilha p) {
+void ESleituraTela(Pilha p, FILE* fileOut) {
 	char exp[50];
 	int i;
 
-	printf("Expressão: ");
+	printf("\n\nExpressão: ");
 	scanf("%s", exp);
 
-	for (i = 0; i < strlen(exp); i++) {
-		printf("%c", exp[i]);
+	for (i = 0; i < strlen(exp); i++)
 		IindexaChar(p, exp[i]);
-	}
-	printf("\n");
+
+	/*	Saida de dados	*/	
+	ESimprimeExpressao(p, fileOut);
+
+	Pdestroi(p);
 }
 
-void ESleituraArquivo(Pilha p) {
-	
-	FILE* fileExp;
-	/*
-		char nameFile[50];
-	*/
+void ESleituraArquivo(Pilha p, FILE* fileIn, FILE* fileOut) {
 	char exp[50];
 	int i;
 
-	printf("Nome do Arquivo: ");
-	/*
-	scanf("%s", nameFile);
-
-	fileExp = fopen(nameFile, "r");
-	*/
-	fileExp = fopen("test.txt", "r");
-
-	if (fileExp == NULL)
-		exit(1);
-
-	while(fscanf(fileExp, "%s", exp) != EOF) {
-		printf("\n\n//---///---//---///---//---///---//---///---//\n");
-		for (i = 0; i < strlen(exp); i++) {
-			printf("%c", exp[i]);
+	/*	Cada linha do arquivo lido	*/
+	while(fscanf(fileIn, "%s", exp) != EOF) {
+		/*	Indexa char na pilha de arvores		*/
+		for (i = 0; i < strlen(exp); i++)
 			IindexaChar(p, exp[i]);
-		}
-		printf("\n\n");
-		/*	Cada linha do arquivo lido	*/
-		ESimprimeExpressao(p);
-		printf("\nResultado:\t%d\n", IcalculaExpressao(Pexamina(p)));
+
+		/*	Saida de dados	*/	
+		ESimprimeExpressao(p, fileOut);
+	
 		Pdestroi(p);
 	}
-	printf("\n");
-	fclose(fileExp);
 }
 
-void ESimprimeExpressao(Pilha p) {
+void ESimprimeExpressao(Pilha p, FILE* fileOut) {
 
-	printf("Posfixada: ");
-	AimprimePos(Pexamina(p));
-	printf("\n");
-	printf("Infixa: ");
-	AimprimeInf(Pexamina(p));
-	printf("\n");
-	printf("Prefixada: ");
-	AimprimePre(Pexamina(p));
-	printf("\n\n");
-	ESformataExpressao(Pexamina(p));
-	printf("\n");
+	fprintf(fileOut,"\n\n//---///---//---///---//---///---//---///---//\n");
+	fprintf(fileOut,"Infixa: ");
+	AimprimeInf(Pexamina(p), fileOut);
+	fprintf(fileOut,"\n");
+	fprintf(fileOut,"Prefixada: ");
+	AimprimePre(Pexamina(p), fileOut);
+	fprintf(fileOut,"\n");
+	fprintf(fileOut,"Posfixada: ");
+	AimprimePos(Pexamina(p), fileOut);
+	fprintf(fileOut,"\n\n");
+	ESformataExpressao(Pexamina(p), fileOut);
+	fprintf(fileOut,"\n");
+
+	fprintf(fileOut,"\nResultado:\t%d\n", IcalculaExpressao(Pexamina(p)));
 }
 
-void ESformataExpressao(NohArv arv) {
+void ESformataExpressao(NohArv arv, FILE* fileOut) {
 	if (!Avazia(arv)) {	
 		if (IehOperador(AitemArv(arv))) {
 			/*	Operador	*/
-			printf("(");
+			fprintf(fileOut,"(");
 			switch (AitemArv(arv)) {
 				case '+':
-					ESformataExpressao(AnohEsq(arv));
-					printf(" + ");
-					ESformataExpressao(AnohDir(arv));
+					ESformataExpressao(AnohEsq(arv), fileOut);
+					fprintf(fileOut," + ");
+					ESformataExpressao(AnohDir(arv), fileOut);
 					break;
 				case '-':
-					ESformataExpressao(AnohEsq(arv));
-					printf(" - ");
-					ESformataExpressao(AnohDir(arv));
+					ESformataExpressao(AnohEsq(arv), fileOut);
+					fprintf(fileOut," - ");
+					ESformataExpressao(AnohDir(arv), fileOut);
 					break;
 				case '*':
-					ESformataExpressao(AnohEsq(arv));
-					printf(" * ");
-					ESformataExpressao(AnohDir(arv));
+					ESformataExpressao(AnohEsq(arv), fileOut);
+					fprintf(fileOut," * ");
+					ESformataExpressao(AnohDir(arv), fileOut);
 					break;
 				case '/':
-					ESformataExpressao(AnohEsq(arv));
-					printf(" / ");
-					ESformataExpressao(AnohDir(arv));
+					ESformataExpressao(AnohEsq(arv), fileOut);
+					fprintf(fileOut," / ");
+					ESformataExpressao(AnohDir(arv), fileOut);
 					break;
 			}
-			printf(") ");
+			fprintf(fileOut,") ");
 		} 
 		else
-			printf("%c", AitemArv(arv));
+			fprintf(fileOut,"%c", AitemArv(arv));
 	}
 }

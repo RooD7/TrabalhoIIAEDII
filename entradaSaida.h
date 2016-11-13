@@ -6,7 +6,7 @@
 #include "pilha.h"
 
 void ESentradaDeDados(Pilha p);
-void ESleituraArquivo(Pilha p);
-void ESleituraTela(Pilha p);
-void ESimprimeExpressao(Pilha p);
-void ESformataExpressao(NohArv arv);
+void ESleituraArquivo(Pilha p, FILE* fileIn, FILE* fileOut);
+void ESleituraTela(Pilha p, FILE* fileOut);
+void ESimprimeExpressao(Pilha p, FILE* fileOut);
+void ESformataExpressao(NohArv arv, FILE* fileOut);
