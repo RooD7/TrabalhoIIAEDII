@@ -106,8 +106,7 @@ void ESimprimeExpressao(Pilha p, FILE* fileOut) {
 	fprintf(fileOut,"\n\n");
 	ESformataExpressao(Pexamina(p), fileOut);
 	fprintf(fileOut,"\n");
-
-	fprintf(fileOut,"\nResultado:\t%d\n", IcalculaExpressao(Pexamina(p)));
+	fprintf(fileOut,"\nResultado:\t%.2f\n", IcalculaExpressao(Pexamina(p)));
 }
 
 void ESformataExpressao(NohArv arv, FILE* fileOut) {

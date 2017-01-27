@@ -8,4 +8,4 @@
 int IehOperador(char c);
 int IehOperando(char c);
 void IindexaChar(Pilha p, char c);
-int IcalculaExpressao(NohArv arv);
+float IcalculaExpressao(NohArv arv);

@@ -28,21 +28,20 @@ void IindexaChar(Pilha p, char c) {
 			NohArv a2 = Pexamina(p);
 			Premove(p);
 			/* segundo item é operador, fica a esquerda do novo noh*/
-			aux = AitemNoh(a2);
+			aux = AitemArv(a2);
 			if (IehOperador(aux))
 				arv = Acria(c, a2, a1);
 			else
 				arv = Acria(c, a1, a2);
-
 		} 
 		else 
 			arv = Acria(c, AcriaVazia(), AcriaVazia());
 
-		Pinsere(p, arv);
+		Pinsere(p, arv); 
 	}
 }
 
-int IcalculaExpressao(NohArv arv) {
+float IcalculaExpressao(NohArv arv) {
 	
 	if (IehOperador(AitemArv(arv))) {
 		/*	Operador	*/

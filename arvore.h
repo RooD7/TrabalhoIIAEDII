@@ -23,9 +23,6 @@ int Avazia(NohArv arv);
 /* Pertence a arvore */
 int Apertence(NohArv arv, char c);
 
-/*	Item do Noh	*/
-char AitemNoh(NohArv arv);
-
 /* Imprime arvore Posfixada */
 void AimprimePos(NohArv arv, FILE* fileOut);
 
@@ -43,7 +40,4 @@ NohArv AnohEsq(NohArv arv);
 
 /*	Noh direito	*/
 NohArv AnohDir(NohArv arv);
-
-/* Imprime arvore */
-void Aimprime(NohArv arv);
 

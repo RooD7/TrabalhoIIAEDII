@@ -52,11 +52,6 @@ int Apertence(NohArv arv, char c) {
 			Apertence(arv->dir, c);
 }
 
-/*	Item do Noh	*/
-char AitemNoh(NohArv arv) {
-	return arv->info;
-}
-
 /* Imprime arvore Posfixada */
 void AimprimePos(NohArv arv, FILE* fileOut) {
 	if (!Avazia(arv)) {
